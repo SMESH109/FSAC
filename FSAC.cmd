@@ -369,12 +369,12 @@ if "%~2%~3%~4%~5%~6%~7%~8%~9" NEQ "" (
 		set "SAMPLE_RATE=%%A"
 		set "SAMPLE_RATE=!SAMPLE_RATE:~13!"
 	)
-	
+
 	for /F "delims=" %%A IN ('findstr /I /C:"--DELAY" "%TMP%\%Password%.txt"') DO (
 		set "DELAY=%%A"
 		set "DELAY=!DELAY:~8!"
 	)
-		
+
 	for /F "delims=" %%A IN ('findstr /I /C:"--AMPLIFY" "%TMP%\%Password%.txt"') DO (
 		set "AMPLIFY=%%A"
 		set "AMPLIFY=!AMPLIFY:~10!"
@@ -491,7 +491,7 @@ if "!CONTTRUE!"=="FALSE" (
 if "!CONTTRUE!"=="TRUE" (
 	findstr /C:"!TRACK!:" "!S_INFOFILE!">"!S_TRACKFILE!"
 	FOR /F "delims=" %%A IN ('findstr /C:"!TRACK!:" "!S_TRACKFILE!"') DO set "TRACKCHECK=TRUE"
-	
+
 	FOR /F "delims=" %%A IN ('findstr /C:"with Dolby Atmos" "!S_TRACKFILE!"') DO set "ATMOSFILE=TRUE"
 	FOR /F "delims=" %%A IN ('findstr /C:"16 Channels" "!S_TRACKFILE!"') DO set "ATMOSFILE=TRUE" & set "DOWNMIX=TRUE"
 	FOR /F "delims=" %%A IN ('findstr /C:"12 Channels" "!S_TRACKFILE!"') DO set "ATMOSFILE=TRUE" & set "DOWNMIX=TRUE"
@@ -563,7 +563,7 @@ echo.
 echo.
 
 echo SOURCE INFORMATION:
-echo.
+echo %~dp1%
 %CYAN%
 for /f "usebackq delims=" %%i in ("!S_HEADERFILE!") do echo %%i
 :: MULTICHANNEL SECTION
@@ -685,7 +685,7 @@ if "!FIRSTSTART!!DAP!!ATMOSFILE!%codec_out_NAME%"=="TRUEFALSETRUELPCM Multichann
 	set "codec_out_NAME=LPCM Multichannel"
 	set "C_Layout=!O_C_Layout!"
 )
-	
+
 :: PCM SOURCE
 if "!ATMOSTYPE!"=="PCM" (
 	FOR /F "delims=" %%A IN ('findstr /C:"16 Channels" "!S_TRACKFILE!"') DO (
@@ -729,7 +729,7 @@ if "%codec_out_NAME%"=="Mono WAVs [ATMOS]" (
 	set "MONOWAVSLAYOUT=Dolby Atmos Demuxer"
 )
 if "%codec_out_NAME%"=="LPCM Multichannel [ATMOS]" (
-	set "SHOWBD= [!THDBR!-Bit]" 
+	set "SHOWBD= [!THDBR!-Bit]"
 	set "MONOWAVSLAYOUT=-"
 )
 
@@ -772,7 +772,7 @@ echo %~2 %~3 %~4 %~5 %~6 %~7 %~8 %~9 | find /i "-AUTO">nul 2>&1
 if "!AUTOMODE!"=="ON" goto DOITAVISYNTH
 
 :: MENU
-echo.	
+echo.
 %WHITE%
 echo SETTINGS:
 if "%CONTTRUE%"=="TRUE" (
@@ -793,7 +793,7 @@ if "%CONTTRUE%"=="TRUE" (
 		echo 7. Pitch Correction    : %Pitch_NAME%
 		echo 8. Delay               : %SHOWDELAY%
 		echo 9. Amplify             : %SHOWAMP%
-	) 
+	)
 	if "!ATMOSFILE!"=="FALSE" (
 		echo    Channel Layout      : !C_LAYOUT!
 		echo    Mono WAVs Layout    : !MONOWAVSLAYOUT!
@@ -859,7 +859,7 @@ if "%CONTTRUE%"=="TRUE" (
 		if errorlevel 10 goto DOITAVISYNTH
 		if errorlevel 9 (
 			echo.
-			%WHITE%	
+			%WHITE%
 			echo Type in Amplify in dB. For Example: 3 for 3dB higher Loudness, or -3 for 3dB lower Loudness
 			echo Also you can type DIALNORM to set DialNorm -31 dB, or NORMALIZE to set the loudest Peak 0dB.
 			echo.
@@ -867,7 +867,7 @@ if "%CONTTRUE%"=="TRUE" (
 		)
 		if errorlevel 8 (
 			echo.
-			%WHITE%	
+			%WHITE%
 			echo Type in your Delay in ms. For Example: 300 for a positive delay, or -300 for a negative Delay
 			echo If you use timechange and delay use the Delay for the NEW speed.
 			echo Example: 24FPS to 25FPS and Delay = 10 Frames you must set 400ms instead of 417ms.
@@ -973,7 +973,7 @@ if "%CONTTRUE%"=="TRUE" (
 		if errorlevel 9 goto DOITAVISYNTH
 		if errorlevel 8 (
 			echo.
-			%WHITE%	
+			%WHITE%
 			echo Type in Amplify in dB. For Example: 3 for 3dB higher Loudness, or -3 for 3dB lower Loudness
 			echo Also you can type DIALNORM to set DialNorm -31 dB, or NORMALIZE to set the loudest Peak 0dB.
 			echo.
@@ -981,7 +981,7 @@ if "%CONTTRUE%"=="TRUE" (
 		)
 		if errorlevel 7 (
 			echo.
-			%WHITE%	
+			%WHITE%
 			echo Type in your Delay in ms. For Example: 300 for a positive delay, or -300 for a negative Delay
 			echo If you use timechange and delay use the Delay for the NEW speed.
 			echo Example: 24FPS to 25FPS and Delay = 10 Frames you must set 400ms instead of 417ms.
@@ -1061,7 +1061,7 @@ if "%CONTTRUE%"=="TRUE" (
 		if "%codec_out_NAME%"=="AAC" set "codec_out_NAME=FLAC"
 	)
 	if errorlevel 2 (
-		if "%DRC%"=="OFF" set "DRC=ON" 
+		if "%DRC%"=="OFF" set "DRC=ON"
 		if "%DRC%"=="ON" set "DRC=OFF"
 	)
 	if errorlevel 1 (
@@ -1079,7 +1079,7 @@ if "%CONTTRUE%"=="TRUE" (
 ) else (
 	echo.
 	%CYAN%
-	echo    Output Folder       : 
+	echo    Output Folder       :
 	echo    !TARGET_FOLDER!
 	echo.
 	%YELLOW%
@@ -1161,19 +1161,19 @@ if "%CONTTRUE%"=="TRUE" (
 		if errorlevel 10 goto DOITAVISYNTH
 		if errorlevel 9 (
 			echo.
-			%WHITE%	
+			%WHITE%
 			echo Type in Amplify in dB. For Example: 3 for 3dB higher Loudness, or -3 for 3dB lower Loudness
 			echo Also you can type DIALNORM to set DialNorm -31 dB, or NORMALIZE to set the loudest Peak 0dB.
 			echo.
 			set /p "AMPLIFY=Type in Amplify in dB or DIALNORM, NORMALIZE and press [ENTER]:" || SET "AMPLIFY=!AMPLIFY!"
-		)	
+		)
 		if errorlevel 8 (
 			if "%HEADER_FIX%"=="NO" set "HEADER_FIX=YES"
 			if "%HEADER_FIX%"=="YES" set "HEADER_FIX=NO"
 		)
 		if errorlevel 7 (
 			echo.
-			%WHITE%	
+			%WHITE%
 			echo Type in your Delay in ms. For Example: 300 for a positive delay, or -300 for a negative Delay
 			echo If you use timechange and delay use the Delay for the NEW speed.
 			echo Example: 24FPS to 25FPS and Delay = 10 Frames you must set 400ms instead of 417ms.
@@ -1280,10 +1280,10 @@ if "%CONTTRUE%"=="TRUE" (
 		if errorlevel 8 (
 			if "%HEADER_FIX%"=="NO" set "HEADER_FIX=YES"
 			if "%HEADER_FIX%"=="YES" set "HEADER_FIX=NO"
-		)		
+		)
 		if errorlevel 7 (
 			echo.
-			%WHITE%	
+			%WHITE%
 			echo Type in Amplify in dB. For Example: 3 for 3dB higher Loudness, or -3 for 3dB lower Loudness
 			echo Also you can type DIALNORM to set DialNorm -31 dB, or NORMALIZE to set the loudest Peak 0dB.
 			echo.
@@ -1291,7 +1291,7 @@ if "%CONTTRUE%"=="TRUE" (
 		)
 		if errorlevel 6 (
 			echo.
-			%WHITE%	
+			%WHITE%
 			echo Type in your Delay in ms. For Example: 300 for a positive delay, or -300 for a negative Delay
 			echo If you use timechange and delay use the Delay for the NEW speed.
 			echo Example: 24FPS to 25FPS and Delay = 10 Frames you must set 400ms instead of 417ms.
@@ -1371,9 +1371,9 @@ if "%CONTTRUE%"=="TRUE" (
 		if "%codec_out_NAME%"=="AAC" set "codec_out_NAME=FLAC"
 	)
 	if errorlevel 1 (
-		if "%DRC%"=="OFF" set "DRC=ON" 
+		if "%DRC%"=="OFF" set "DRC=ON"
 		if "%DRC%"=="ON" set "DRC=OFF"
-	)	
+	)
 )
 goto START
 
@@ -2150,7 +2150,7 @@ for /F "usebackq tokens=1-10 delims=,:" %%A in ("!DNtemp!") do (
 )
 
 if "!ATMOS_DIALNORM!"=="dB" set "ATMOS_DIALNORM=UNKNOWN"
-if "!ATMOS_DIALNORM!" NEQ "31" ( 
+if "!ATMOS_DIALNORM!" NEQ "31" (
 	if "!ATMOS_DIALNORM!" NEQ "UNKNOWN" (
 		echo DialNorm = -!ATMOS_DIALNORM! dB
 		set /a AMPLIFY=31-!ATMOS_DIALNORM!
@@ -2176,12 +2176,12 @@ if "!ATMOS_DIALNORM!" NEQ "31" (
 		echo.>>"!OUTPUTFILE!.FSAC_%DateStart%_%TimeFile%.log"
 	)
 )
-	
+
 if "!DNORMFOUND!"=="TRUE" (
 	if "%LOGFILE%"=="TRUE" (
 		echo DialNorm found and Amplify set^^!>>"!OUTPUTFILE!.FSAC_%DateStart%_%TimeFile%.log"
 		echo.>>"!OUTPUTFILE!.FSAC_%DateStart%_%TimeFile%.log"
-	)		
+	)
 	%HCGREEN%
 	echo DONE^^!
 	echo.
@@ -2189,7 +2189,7 @@ if "!DNORMFOUND!"=="TRUE" (
 	if "%LOGFILE%"=="TRUE" (
 		echo DialNorm not found, leave untouched^^!>>"!OUTPUTFILE!.FSAC_%DateStart%_%TimeFile%.log"
 		echo.>>"!OUTPUTFILE!.FSAC_%DateStart%_%TimeFile%.log"
-	)		
+	)
 	%HCGREEN%
 	echo DONE^^!
 	echo.
@@ -2243,9 +2243,9 @@ echo                                                 FS AUDIO CONVERTER
 echo                                        ====================================
 echo.
 %HCWHITE%
-echo FS Audio Converter is a FrameServer based CLI Tool for audio encoding. 
+echo FS Audio Converter is a FrameServer based CLI Tool for audio encoding.
 echo You need an installed Avisynth+ Frameserver for using this tool.
-echo Encoding engine is FFMPEG (for Atmos files Dolby Reference Player + FFMPEG). 
+echo Encoding engine is FFMPEG (for Atmos files Dolby Reference Player + FFMPEG).
 echo.
 "!Cecho!" {%HC_GREEN%}USAGE:{#}{\n}
 echo     %~n0 "<SOURCEFILE>" [OPTIONAL ^<SWITCHES^>]
