@@ -2317,7 +2317,7 @@ setlocal DisableDelayedExpansion
 ENDLOCAL
 %HCWHITE%
 if "%EXTERNSTART%"=="TRUE" goto :eof
-if "%AUTOMODE%"=="OFF" TIMEOUT 30
+if "%AUTOMODE%"=="OFF" rundll32 user32.dll,MessageBeep
 exit
 
 :FILECOUNTER
