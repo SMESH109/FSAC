@@ -1,0 +1,38 @@
+:: ORIGINAL COLORCODES
+
+::GREY="!sfkpath!" color grey"
+::RED="!sfkpath!" color red"
+::GREEN="!sfkpath!" color green"
+::YELLOW="!sfkpath!" color yellow"
+::BLUE="!sfkpath!" color blue"
+::MAGENTA="!sfkpath!" color magenta"
+::CYAN="!sfkpath!" color cyan"
+::WHITE="!sfkpath!" color white"
+::_GREY=08"
+::_RED=0C"
+::_GREEN=0A"
+::_YELLOW=0E"
+::_BLUE=09"
+::_MAGENTA=0D"
+::_CYAN=0B"
+::_WHITE=0F"
+
+:: BEGIN THEME
+set "GREY="!sfkpath!" color white"
+set "RED="!sfkpath!" color white"
+set "GREEN="!sfkpath!" color white"
+set "YELLOW="!sfkpath!" color white"
+set "BLUE="!sfkpath!" color white"
+set "MAGENTA="!sfkpath!" color white"
+set "CYAN="!sfkpath!" color white"
+set "WHITE="!sfkpath!" color white"
+set "_GREY=0F"
+set "_RED=0F"
+set "_GREEN=0F"
+set "_YELLOW=0F"
+set "_BLUE=0F"
+set "_MAGENTA=0F"
+set "_CYAN=0F"
+set "_WHITE=0F"
+
+goto :eof
