@@ -1422,7 +1422,7 @@ echo Amplify             : %SHOWAMP%
 echo.
 %WHITE%
 echo ENCODING:
-echo.
+echo !SOURCEFILE!
 
 ::ENCODER SETTINGS
 if "%Tempo_NAME%"=="[Slowdown] 25.00 to 23.976" (
